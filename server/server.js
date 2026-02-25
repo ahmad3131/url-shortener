@@ -34,6 +34,19 @@ app.use(cors({
 // ROUTES
 // ============================================
 
+// Health check endpoint - helps verify server is working
+app.get('/', (req, res) => {
+  res.json({ 
+    success: true, 
+    message: 'URL Shortener API is running!',
+    endpoints: {
+      shorten: 'POST /api/shorten',
+      redirect: 'GET /:shortCode',
+      info: 'GET /api/url/:shortCode'
+    }
+  });
+});
+
 // API routes
 app.use('/api', urlRoutes);
 
